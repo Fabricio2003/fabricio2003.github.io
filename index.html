@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Weather Project</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Local Weather</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js CDN for trends chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Hello, my name is Fabricio Cabrera!</h1>
-    <p>This page will be a website that lets the user check the weather.</p>
+  <header class="app-header">
+    <h1>Local Weather</h1>
+    <p class="subtitle">Search, save favorites, and explore forecasts</p>
+  </header>
+
+  <main class="container" aria-live="polite">
+    <section class="controls">
+      <form id="search-form" autocomplete="off">
+        <label for="city-input" class="sr-only">City</label>
+        <input id="city-input" type="text" placeholder="Enter city (e.g., Hayward)" />
+        <button type="submit" id="search-btn">Search</button>
+        <button type="button" id="geo-btn" title="Use my location">📍</button>
+      </form>
+
+      <div class="favorites">
+        <h2>Favorites</h2>
+        <div id="favorites-list" class="chips"></div>
+        <form id="add-favorite-form">
+          <input id="favorite-input" type="text" placeholder="Add favorite city" />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="current-weather" class="card">
+      <div class="card-header">
+        <h2 id="location-name">—</h2>
+        <span id="last-updated" class="timestamp">—</span>
+      </div>
+      <div class="weather-main">
+        <img id="weather-icon" alt="" />
+        <div class="temp-block">
+          <div id="temperature" class="temp">—</div>
+          <div id="condition" class="condition">—</div>
+        </div>
+      </div>
+      <ul class="stats">
+        <li><strong>Humidity:</strong> <span id="humidity">—</span></li>
+        <li><strong>Wind:</strong> <span id="wind">—</span></li>
+        <li><strong>Feels like:</strong> <span id="feels-like">—</span></li>
+      </ul>
+      <div id="error-message" role="alert" class="error hidden"></div>
+    </section>
+
+    <section id="forecast" class="card">
+      <h2>5-day forecast</h2>
+      <div id="forecast-grid" class="forecast-grid"></div>
+    </section>
+
+    <section id="trends" class="card">
+      <h2>Temperature trend</h2>
+      <canvas id="trend-chart" height="120"></canvas>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>Data: OpenWeatherMap • Built for learning and community</small>
+  </footer>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
