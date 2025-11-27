@@ -1,5 +1,5 @@
 // ===== Configuration =====
-const API_KEY = "978bcefe88946e88075492ed34be88bd";
+const API_KEY = "978bcefe88946e88075492ed34be88bd"; // replace with your key
 const API_BASE = "https://api.openweathermap.org/data/2.5";
 const ICON_URL = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
@@ -343,3 +343,9 @@ addFavoriteForm.addEventListener("submit", (e) => {
   // Default start
   fetchByCity("Hayward");
 })();
+
+
+
+ 
+
+    
