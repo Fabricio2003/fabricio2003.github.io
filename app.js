@@ -351,12 +351,13 @@ addFavoriteForm.addEventListener("submit", (e) => {
     }).catch(() => {
       fetchByCity("Hayward"); 
     });
+    showRandomFact
     return;
   }
 
   
   fetchByCity("Hayward");
-  showRandomFact();
+  
 })();
 
 
