@@ -72,6 +72,11 @@ function setThemeByWeather(main, iconCode) {
   }
   document.documentElement.style.setProperty("--theme-gradient", gradient);
 }
+function showRandomFact(){
+  const factEl = document.getElementById(fact-text");
+  const randomIndex = Math.floor(Math.random() * weatherFacts.length);
+  factEl.textContent = weatherFacts[randomIndex];
+}
 
 function showError(msg) {
   errorMessageEl.textContent = msg;
@@ -344,13 +349,14 @@ addFavoriteForm.addEventListener("submit", (e) => {
       renderForecast(forecast);
       renderTrendChart(forecast);
     }).catch(() => {
-      fetchByCity("Hayward"); // sensible default for Bay Area
+      fetchByCity("Hayward"); 
     });
     return;
   }
 
-  // Default start
+  
   fetchByCity("Hayward");
+  showRandomFact();
 })();
 
 
