@@ -348,10 +348,11 @@ addFavoriteForm.addEventListener("submit", (e) => {
       renderCurrent(current);
       renderForecast(forecast);
       renderTrendChart(forecast);
+      showRandomFact();
     }).catch(() => {
       fetchByCity("Hayward"); 
     });
-    showRandomFact
+    
     return;
   }
 
