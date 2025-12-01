@@ -51,6 +51,15 @@ body {
   padding: 0.6rem 0.8rem;
   border-radius: 8px;
 }
+#fun-fact {
+  background: #0b1020;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-style: italic;
+  color: #facc15; /* golden highlight */
+}
 
 button {
   background: var(--accent);
