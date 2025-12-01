@@ -1,9 +1,18 @@
-// ===== Configuration =====
+
 const API_KEY = "978bcefe88946e88075492ed34be88bd";
 const API_BASE = "https://api.openweathermap.org/data/2.5";
 const ICON_URL = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
-// ===== DOM elements =====
+const weatherFacts = [
+  "Despite deserts being associated with heat, the largest desert in the world is actually Antarctica.",
+  "The Gulf Stream is a phenomenon where the currents carry warm surface water from the Caribbean up to Europe. This is why the U.K. experiences a temperate climate, despite being located further north compared to other temperate zones.",
+  "The famous Marine Layer fog in San Fransico is formed by the warm, moist air from the inland settling over the cooler oceanic air. Which causes the air to become cooler and denser.",
+  "One can still get sunburned during overcast weather, since around 80% of UV rays can still penetrate through the layer of clouds.",
+  "Petrichor is the name of a phenomenon where one can 'smell the rain'. This occurs at the start of a rain, where water droplets begin dropping on the dry soil."
+  ];
+
+
+
 const cityInput = document.getElementById("city-input");
 const searchForm = document.getElementById("search-form");
 const geoBtn = document.getElementById("geo-btn");
