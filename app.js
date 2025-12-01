@@ -10,8 +10,11 @@ const weatherFacts = [
   "One can still get sunburned during overcast weather, since around 80% of UV rays can still penetrate through the layer of clouds.",
   "Petrichor is the name of a phenomenon where one can 'smell the rain'. This occurs at the start of a rain, where water droplets begin dropping on the dry soil."
   ];
-
-
+function showRandomFact() {
+  const factEl = document.getElementById("fact-text");
+  const randomIndex = Math.floor(Math.random() * weatherFacts.length);
+  factEl.textContent = weatherFacts[randomIndex];
+}
 
 const cityInput = document.getElementById("city-input");
 const searchForm = document.getElementById("search-form");
@@ -72,11 +75,7 @@ function setThemeByWeather(main, iconCode) {
   }
   document.documentElement.style.setProperty("--theme-gradient", gradient);
 }
-function showRandomFact(){
-  const factEl = document.getElementById("fact-text");
-  const randomIndex = Math.floor(Math.random() * weatherFacts.length);
-  factEl.textContent = weatherFacts[randomIndex];
-}
+
 
 function showError(msg) {
   errorMessageEl.textContent = msg;
