@@ -63,7 +63,7 @@ async function fetchByGeolocation() {
       renderCurrent(current);
       renderForecast(forecast);
       renderTrendChart(forecast);
-      showRandomFact(); // <-- show a new fact when using geolocation
+  
       localStorage.setItem("weather:lastCoords", JSON.stringify({ latitude, longitude }));
     } catch (err) {
       showError(err.message || "Unable to fetch location weather.");
@@ -76,7 +76,6 @@ async function fetchByGeolocation() {
 // ===== Initial load =====
 (function init() {
   renderFavorites();
-  showRandomFact(); // <-- show a fact on page load
 
   const lastCity = localStorage.getItem("weather:lastCity");
   if (lastCity) {
@@ -94,7 +93,7 @@ async function fetchByGeolocation() {
       renderCurrent(current);
       renderForecast(forecast);
       renderTrendChart(forecast);
-      showRandomFact();
+    
     }).catch(() => {
       fetchByCity("Hayward");
     });
