@@ -49,25 +49,38 @@ function timestamp() {
   return d.toLocaleString();
 }
 
-function setThemeByWeather(main, iconCode) {
-  // Map condition to theme gradient; adjust as desired
-  const code = iconCode || "";
-  let gradient = "radial-gradient(1200px 800px at 50% 0%, rgba(96,165,250,0.25), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))";
-
+function setThemeByWeather(main, iconCode, tempK) {
+  const f = (tempK - 273.15) * 9/5 + 32;
   const m = (main || "").toLowerCase();
+  let gradient;
+
   if (m.includes("clear")) {
-    gradient = "radial-gradient(1200px 800px at 50% 0%, rgba(250,204,21,0.20), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0))";
+    if (f >= 90) {
+      // Hot sunny day → orange/red theme
+      gradient = "linear-gradient(180deg, rgba(255,140,0,0.4), rgba(255,69,0,0.6))";
+    } else if (f < 50) {
+      // Cold but clear → icy blue theme
+      gradient = "linear-gradient(180deg, rgba(173,216,230,0.4), rgba(135,206,250,0.6))";
+    } else {
+      // Mild clear → golden/yellow theme
+      gradient = "linear-gradient(180deg, rgba(250,204,21,0.3), rgba(255,255,0,0.4))";
+    }
   } else if (m.includes("cloud")) {
-    gradient = "radial-gradient(1200px 800px at 50% 0%, rgba(148,163,184,0.25), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0))";
+    gradient = "linear-gradient(180deg, rgba(148,163,184,0.3), rgba(100,116,139,0.5))";
   } else if (m.includes("rain")) {
-    gradient = "radial-gradient(1200px 800px at 50% 0%, rgba(96,165,250,0.18), transparent 60%), linear-gradient(180deg, rgba(96,165,250,0.06), rgba(255,255,255,0))";
+    gradient = "linear-gradient(180deg, rgba(96,165,250,0.3), rgba(30,64,175,0.5))";
   } else if (m.includes("snow")) {
-    gradient = "radial-gradient(1200px 800px at 50% 0%, rgba(255,255,255,0.22), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0))";
+    gradient = "linear-gradient(180deg, rgba(255,255,255,0.4), rgba(200,200,255,0.5))";
   } else if (m.includes("thunder")) {
-    gradient = "radial-gradient(1200px 800px at 50% 0%, rgba(147,51,234,0.20), transparent 60%), linear-gradient(180deg, rgba(147,51,234,0.05), rgba(255,255,255,0))";
+    gradient = "linear-gradient(180deg, rgba(147,51,234,0.3), rgba(88,28,135,0.5))";
+  } else {
+    // Default fallback
+    gradient = "linear-gradient(180deg, rgba(96,165,250,0.25), rgba(255,255,255,0.05))";
   }
+
   document.documentElement.style.setProperty("--theme-gradient", gradient);
 }
+
 
 function showError(msg) {
   errorMessageEl.textContent = msg;
@@ -187,7 +200,7 @@ function renderCurrent(data) {
   humidityEl.textContent = `${data.main.humidity}%`;
   windEl.textContent = formatWind(data.wind.speed);
   feelsLikeEl.textContent = formatTemp(data.main.feels_like);
-  setThemeByWeather(w.main, w.icon);
+  setThemeByWeather(w.main, w.icon,data.main.temp);
   const flavorEl = document.getElementById("flavor-text");
   flavorEl.textContent = getFlavorText(w.main, data.main.temp);
 }
