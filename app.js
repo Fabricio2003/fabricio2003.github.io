@@ -52,48 +52,58 @@ function timestamp() {
 function setThemeByWeather(main, iconCode, tempK) {
   const f = (tempK - 273.15) * 9/5 + 32;
   const m = (main || "").toLowerCase();
-  let gradient, cardBg, cardBorder;
+  let gradient, cardBg, cardBorder, cardText;
 
   if (m.includes("clear")) {
     if (f >= 90) {
       gradient = "linear-gradient(180deg, rgba(255,140,0,0.4), rgba(255,69,0,0.6))";
-      cardBg = "#ffedd5"; // warm orange background
-      cardBorder = "#fb923c"; // orange border
+      cardBg = "#ffedd5"; // bright orange
+      cardBorder = "#fb923c";
+      cardText = "#1f2937"; // dark text for contrast
     } else if (f < 50) {
       gradient = "linear-gradient(180deg, rgba(173,216,230,0.4), rgba(135,206,250,0.6))";
-      cardBg = "#e0f2fe"; // icy blue background
-      cardBorder = "#38bdf8"; // blue border
+      cardBg = "#e0f2fe"; // light blue
+      cardBorder = "#38bdf8";
+      cardText = "#1f2937"; // dark text
     } else {
       gradient = "linear-gradient(180deg, rgba(250,204,21,0.3), rgba(255,255,0,0.4))";
-      cardBg = "#fef9c3"; // sunny yellow background
-      cardBorder = "#facc15"; // yellow border
+      cardBg = "#fef9c3"; // bright yellow
+      cardBorder = "#facc15";
+      cardText = "#1f2937"; // dark text
     }
   } else if (m.includes("cloud")) {
     gradient = "linear-gradient(180deg, rgba(148,163,184,0.3), rgba(100,116,139,0.5))";
     cardBg = "#e5e7eb";
     cardBorder = "#9ca3af";
+    cardText = "#1f2937"; // dark text
   } else if (m.includes("rain")) {
     gradient = "linear-gradient(180deg, rgba(96,165,250,0.3), rgba(30,64,175,0.5))";
-    cardBg = "#dbeafe";
+    cardBg = "#1e3a8a"; // dark blue
     cardBorder = "#60a5fa";
+    cardText = "#e5e7eb"; // light text
   } else if (m.includes("snow")) {
     gradient = "linear-gradient(180deg, rgba(255,255,255,0.4), rgba(200,200,255,0.5))";
-    cardBg = "#f8fafc";
+    cardBg = "#f8fafc"; // very light
     cardBorder = "#cbd5e1";
+    cardText = "#1f2937"; // dark text
   } else if (m.includes("thunder")) {
     gradient = "linear-gradient(180deg, rgba(147,51,234,0.3), rgba(88,28,135,0.5))";
-    cardBg = "#ede9fe";
+    cardBg = "#4c1d95"; // dark purple
     cardBorder = "#a855f7";
+    cardText = "#e5e7eb"; // light text
   } else {
     gradient = "linear-gradient(180deg, rgba(96,165,250,0.25), rgba(255,255,255,0.05))";
     cardBg = "#121826";
     cardBorder = "#1f2937";
+    cardText = "#e5e7eb"; // default light text
   }
 
   document.documentElement.style.setProperty("--theme-gradient", gradient);
   document.documentElement.style.setProperty("--card-bg", cardBg);
   document.documentElement.style.setProperty("--card-border", cardBorder);
+  document.documentElement.style.setProperty("--card-text", cardText);
 }
+
 
 
 function showError(msg) {
