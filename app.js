@@ -28,6 +28,36 @@ const chartCanvas = document.getElementById("trend-chart");
 let trendChart = null;
 
 // ===== Utilities =====
+
+function getFlavorText(main, tempK) {
+  const tempF = (tempK - 273.15) * 9/5 + 32;
+  const m = (main || "").toLowerCase();
+
+  if (m.includes("rain")) {
+    return "It's dangerous to go alone — take your umbrella!";
+  }
+  if (m.includes("snow")) {
+    return "Bundle up! It's a winter wonderland out there.";
+  }
+  if (m.includes("clear") && tempF >= 82) {
+    return "Don't forget to stay hydrated out there!";
+  }
+  if (m.includes("clear") && tempF < 50) {
+    return "Clear skies, but chilly vibes — layer up!";
+  }
+  if (m.includes("cloud")) {
+    return "A little gloomy, but perfect for a cozy drink.";
+  }
+  if (tempF >= 95) {
+    return "Scorching heat! Find shade and drink water.";
+  }
+  if (tempF <= 32) {
+    return "Freezing temps — watch for ice and stay warm!";
+  }
+
+  return "Enjoy the weather, whatever it brings!";
+}
+
 function formatTemp(kelvin) {
   const c = kelvin - 273.15;
   const f = c * 9/5 + 32;
@@ -154,6 +184,9 @@ function renderCurrent(data) {
   windEl.textContent = formatWind(data.wind.speed);
   feelsLikeEl.textContent = formatTemp(data.main.feels_like);
   setThemeByWeather(w.main, w.icon);
+  const flavor = getFlavorText(w.main, data.main.temp);
+  const flavorEl = document.getElementById("flavor-text");
+  if (flavorEl) flavorEl.textContent = flavor;
 }
 
 function groupForecastByDay(list) {
