@@ -3,7 +3,7 @@
   --card-bg: #121826;
   --card-border: #1f2937;
   --card-text: #e5e7eb;
-  --text: #011017;
+  --text: #45748a;
   --muted: #9ca3af;
   --accent: #60a5fa;
   --danger: #ef4444;
@@ -59,7 +59,7 @@ body {
 
 button {
   background: var(--accent);
-  color: #06121f;
+  color: #a5b8cc;
   border: none;
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
