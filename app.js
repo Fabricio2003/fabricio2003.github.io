@@ -59,7 +59,7 @@ function setThemeByWeather(main, iconCode, tempK) {
       gradient = "linear-gradient(180deg, rgba(255,140,0,0.4), rgba(255,69,0,0.6))";
       cardBg = "#ffedd5"; // bright orange
       cardBorder = "#fb923c";
-      cardText = "#1f2937"; // dark text for contrast
+      cardText = "#1f2937"; // dark text for readability
     } else if (f < 50) {
       gradient = "linear-gradient(180deg, rgba(173,216,230,0.4), rgba(135,206,250,0.6))";
       cardBg = "#e0f2fe"; // light blue
