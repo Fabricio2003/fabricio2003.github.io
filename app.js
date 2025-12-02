@@ -29,6 +29,39 @@ const chartCanvas = document.getElementById("trend-chart");
 let trendChart = null;
 
 // ===== Utilities =====
+
+
+function getFlavorText(main, tempK) {
+  const c = tempK - 273.15;
+  const f = c * 9/5 + 32;
+
+  const m = (main || "").toLowerCase();
+
+  if (m.includes("clear")) {
+    if (f > 85) return "Sunny skies—perfect for iced coffee!";
+    if (f < 50) return "Clear but chilly—bundle up!";
+    return "A beautiful, clear day awaits.";
+  }
+
+  if (m.includes("cloud")) {
+    return f > 70 ? "Warm but cloudy—like nature’s softbox." : "Overcast vibes, maybe a good book?";
+  }
+
+  if (m.includes("rain")) {
+    return f > 60 ? "Rainy but mild—grab your umbrella and enjoy the drizzle." : "Cold rain—time for soup and blankets.";
+  }
+
+  if (m.includes("snow")) {
+    return "Snowy wonderland—perfect for cocoa and cozy socks.";
+  }
+
+  if (m.includes("thunder")) {
+    return "Thunderstorms rumbling—stay safe and enjoy the show.";
+  }
+
+  return "Weather’s doing its thing—make the most of it!";
+}
+
 function formatTemp(kelvin) {
   const c = kelvin - 273.15;
   const f = c * 9/5 + 32;
@@ -155,6 +188,8 @@ function renderCurrent(data) {
   windEl.textContent = formatWind(data.wind.speed);
   feelsLikeEl.textContent = formatTemp(data.main.feels_like);
   setThemeByWeather(w.main, w.icon);
+  const flavorEl = document.getElementById("flavor-text");
+  flavorEl.textContent = getFlavorText(w.main, data.main.temp);
 }
 
 function groupForecastByDay(list) {
