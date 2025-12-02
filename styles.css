@@ -1,6 +1,9 @@
 :root {
   --bg: #0f172a;
   --card: #121826;
+  --card-bg: #121826;
+  --card-border: #1f2937;
+  --card-text: #e5e7eb;
   --text: #011017;
   --muted: #9ca3af;
   --accent: #60a5fa;
@@ -98,6 +101,7 @@ button#geo-btn {
   border-radius: 16px;
   padding: 1rem;
   margin: 1rem 0;
+  color: var(--card-text); /* use variable */
 }
 
 .card-header {
