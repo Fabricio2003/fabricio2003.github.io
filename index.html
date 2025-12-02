@@ -11,24 +11,24 @@
 </head>
 <body>
   <header class="app-header">
-    <h1>Local Weather</h1>
-    <p class="subtitle">Search, save favorites, and explore forecasts</p>
+    <h1>Local Weather Checker Website</h1>
+    <p class="subtitle"> On this website, you can check the current weather for virtually every city around the world.</p>
   </header>
 
   <main class="container" aria-live="polite">
     <section class="controls">
       <form id="search-form" autocomplete="off">
         <label for="city-input" class="sr-only">City</label>
-        <input id="city-input" type="text" placeholder="Enter city (e.g., Hayward)" />
+        <input id="city-input" type="text" placeholder="Enter the city's name (e.g., Hayward)" />
         <button type="submit" id="search-btn">Search</button>
-        <button type="button" id="geo-btn" title="Use my location">📍</button>
+        <button type="button" id="geo-btn" title="Use my location">📍Click here to check the current weather in the place you're located at📍"</button>
       </form>
 
       <div class="favorites">
         <h2>Favorites</h2>
         <div id="favorites-list" class="chips"></div>
         <form id="add-favorite-form">
-          <input id="favorite-input" type="text" placeholder="Add favorite city" />
+          <input id="favorite-input" type="text" placeholder="Click here to add your favorite city." />
           <button type="submit">Add</button>
         </form>
       </div>
