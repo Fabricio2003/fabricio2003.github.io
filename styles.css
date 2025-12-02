@@ -55,6 +55,13 @@ body {
   padding: 0.6rem 0.8rem;
   border-radius: 8px;
 }
+.flavor-text {
+  margin-top: 0.5rem;
+  font-style: oblique;
+  color: #facc15; /* warm yellow */
+  font-size: 1rem;
+}
+
 
 button {
   background: var(--accent);
