@@ -1,10 +1,10 @@
 
-// ===== Configuration =====
-const API_KEY = "978bcefe88946e88075492ed34be88bd"; // replace with your key
+// Configuration setup
+const API_KEY = "978bcefe88946e88075492ed34be88bd"; 
 const API_BASE = "https://api.openweathermap.org/data/2.5";
 const ICON_URL = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
-// ===== DOM elements =====
+// This is the DOM elements section
 const cityInput = document.getElementById("city-input");
 const searchForm = document.getElementById("search-form");
 const geoBtn = document.getElementById("geo-btn");
@@ -28,15 +28,11 @@ const favoriteInput = document.getElementById("favorite-input");
 const chartCanvas = document.getElementById("trend-chart");
 let trendChart = null;
 
-// ===== Utilities =====
-
-
-
-
+// These are the utilities  that the program will use.
 function formatTemp(kelvin) {
   const c = kelvin - 273.15;
   const f = c * 9/5 + 32;
-  return `${Math.round(f)}°F`; // switch to °C if you prefer
+  return `${Math.round(f)}°F`;
 }
 
 function formatWind(mps) {
@@ -57,17 +53,17 @@ function setThemeByWeather(main, iconCode, tempK) {
   if (m.includes("clear")) {
     if (f >= 90) {
       gradient = "linear-gradient(180deg, rgba(255,140,0,0.4), rgba(255,69,0,0.6))";
-      cardBg = "#ffedd5"; // bright orange
+      cardBg = "#f2a641"; // orange
       cardBorder = "#fb923c";
       cardText = "#1f2937"; // dark text for readability
     } else if (f < 50) {
       gradient = "linear-gradient(180deg, rgba(173,216,230,0.4), rgba(135,206,250,0.6))";
-      cardBg = "#e0f2fe"; // light blue
+      cardBg = "#90c0e0"; // sky blue
       cardBorder = "#38bdf8";
-      cardText = "#1f2937"; // dark text
+      cardText = "#1f2937"; // 
     } else {
       gradient = "linear-gradient(180deg, rgba(250,204,21,0.3), rgba(255,255,0,0.4))";
-      cardBg = "#fef9c3"; // bright yellow
+      cardBg = "#ded037"; // bright yellow
       cardBorder = "#facc15";
       cardText = "#1f2937"; // dark text
     }
@@ -128,7 +124,7 @@ function getFlavorText(main, tempK) {
   }
 
   if (m.includes("cloud")) {
-    return f > 70 ? "Huh? Warm and cloudy? Now that is strange." : "I wonder why the sun is hiding on this warm, beautiful day?";
+    return f > 70 ? "Huh? Warm and cloudy? Now that is strange." : "Ah man, I don't want to leave the warmth and comfort of my bed.";
   }
 
   if (m.includes("rain")) {
@@ -329,7 +325,7 @@ function renderTrendChart(forecastData) {
   });
 }
 
-// ===== Orchestration =====
+// Orchestration 
 async function fetchByCity(city) {
   clearError();
   try {
@@ -371,7 +367,7 @@ async function fetchByGeolocation() {
   }, { enableHighAccuracy: true, timeout: 10000 });
 }
 
-// ===== Event listeners =====
+// Event listeners 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const city = cityInput.value.trim();
@@ -396,7 +392,7 @@ addFavoriteForm.addEventListener("submit", (e) => {
   favoriteInput.value = "";
 });
 
-// ===== Initial load =====
+// Initial load 
 (function init() {
   renderFavorites();
 
@@ -417,7 +413,7 @@ addFavoriteForm.addEventListener("submit", (e) => {
       renderForecast(forecast);
       renderTrendChart(forecast);
     }).catch(() => {
-      fetchByCity("Hayward"); // sensible default for Bay Area
+      fetchByCity("Hayward"); 
     });
     return;
   }
