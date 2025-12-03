@@ -29,7 +29,7 @@ const chartCanvas = document.getElementById("trend-chart");
 let trendChart = null;
 
 // These are the utilities  that the program will use.
-function formatTemp(kelvin) {
+function KelvinToFahrenheit(kelvin) {
   const c = kelvin - 273.15;
   const f = c * 9/5 + 32;
   return `${Math.round(f)}°F`;
@@ -45,7 +45,7 @@ function timestamp() {
   return d.toLocaleString();
 }
 
-function setThemeByWeather(main, iconCode, tempK) {
+function setWeatherTheme(main, iconCode, tempK) {
   const f = (tempK - 273.15) * 9/5 + 32;
   const m = (main || "").toLowerCase();
   let gradient, cardBg, cardBorder, cardText;
@@ -216,7 +216,7 @@ async function fetchForecastByCoords(lat, lon) {
   return res.json();
 }
 
-// ===== Rendering =====
+// Rendering
 function renderCurrent(data) {
   const name = `${data.name}, ${data.sys?.country ?? ""}`.trim();
   const w = data.weather?.[0];
@@ -224,12 +224,12 @@ function renderCurrent(data) {
   lastUpdatedEl.textContent = `Updated ${timestamp()}`;
   iconEl.src = ICON_URL(w.icon);
   iconEl.alt = w.description || "Weather icon";
-  tempEl.textContent = formatTemp(data.main.temp);
+  tempEl.textContent = KelvinToFahrenheit(data.main.temp);
   conditionEl.textContent = w.main;
   humidityEl.textContent = `${data.main.humidity}%`;
   windEl.textContent = formatWind(data.wind.speed);
-  feelsLikeEl.textContent = formatTemp(data.main.feels_like);
-  setThemeByWeather(w.main, w.icon, data.main.temp);
+  feelsLikeEl.textContent = KelvinToFahrenheit(data.main.feels_like);
+  setWeatherTheme(w.main, w.icon, data.main.temp);
   const flavorEl = document.getElementById("flavor-text");
   flavorEl.textContent = getFlavorText(w.main, data.main.temp);
 }
@@ -275,8 +275,8 @@ function renderForecast(forecastData) {
       <div class="date">${date}</div>
       <img src="${ICON_URL(sum.icon)}" alt="${sum.dominant}" />
       <div class="temps">
-        <strong>High:</strong> ${formatTemp(sum.max)}<br/>
-        <strong>Low:</strong> ${formatTemp(sum.min)}
+        <strong>High:</strong> ${KelvinToFahrenheit(sum.max)}<br/>
+        <strong>Low:</strong> ${KelvinToFahrenheit(sum.min)}
       </div>
       <div class="cond">${sum.dominant}</div>
     `;
