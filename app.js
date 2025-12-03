@@ -122,25 +122,34 @@ function getFlavorText(main, tempK) {
   const m = (main || "").toLowerCase();
 
   if (m.includes("clear")) {
-    if (f > 85) return "Sunny skies—perfect for iced coffee!";
-    if (f < 50) return "Clear but chilly—bundle up!";
+    if (f > 85) return "Looks like it is going to be a little hot today. Don't forget your sunscreen!";
+    if (f < 50) return "Looks like it's a beautiful but chilly day. Layer up!";
     return "A beautiful, clear day awaits.";
   }
 
   if (m.includes("cloud")) {
-    return f > 70 ? "Warm but cloudy—like nature’s softbox." : "Overcast vibes, maybe a good book?";
+    return f > 70 ? "Huh? Warm and cloudy? Now that is strange." : "I wonder why the sun is hiding on this warm, beautiful day?";
   }
 
   if (m.includes("rain")) {
-    return f > 60 ? "Rainy but mild—grab your umbrella and enjoy the drizzle." : "Cold rain—time for soup and blankets.";
+    return f > 60 ? "Ah, the rain. Now my car got a free carwash!" : "Make sure you cook up your favorite soup and huddle up under your favorite blanket.";
   }
 
   if (m.includes("snow")) {
-    return "Snowy wonderland—perfect for cocoa and cozy socks.";
+    return "In the lane, snow is glistening. A beautiful sight, we're happy tonight. Walking in a winter wonderland";
   }
 
   if (m.includes("thunder")) {
-    return "Thunderstorms rumbling—stay safe and enjoy the show.";
+    return "It's too dangerous to go alone, remember to wear your Thunder Helm";
+  }
+  if (m.includes("fog")) {
+    return "Wow, I can't even see anything! I think I might be a little lost...";
+  }
+  if (m.includes("smoke")){
+    return "Hey, who just burned our dinner?!";
+  }
+  if (m.includes("wind")){
+    return "Sometimes, all I need is the air that I breathe. And to love you!";
   }
 
   return "Weather’s doing its thing—make the most of it!";
